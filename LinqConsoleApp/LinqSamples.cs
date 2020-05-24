@@ -294,21 +294,28 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad10Button_Click()
         {
-            /*
             var res = Emps
                 .Select(e => new
                 {
                     e.Ename,
                     e.Job,
                     e.HireDate
-                }).Union()
-                .ToList();*/
+                }).Union(new List<object>
+                {
+                    new
+                    {
+                        Ename = "Brak Wartości",
+                        Job = (string) null,
+                        HireDate = (DateTime?) null
+                    }
+                })
+                .ToList();
         }
 
         //Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()
         public void Przyklad11()
         {
-            var res = Emps.Aggregate((e1,e2) => e1.Salary > e2.Salary ? e1 : e2);
+            var res = Emps.Aggregate((e1, e2) => e1.Salary > e2.Salary ? e1 : e2);
         }
 
         //Z pomocą języka LINQ i metody SelectMany wykonaj złączenie
